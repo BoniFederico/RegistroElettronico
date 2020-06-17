@@ -17,3 +17,4 @@ public class Avviso {
         this.testo = testo;
     }
 }
+ 
