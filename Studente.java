@@ -28,9 +28,8 @@ public class Studente {
     public Risultato ultimoVoto(Connection connessione) {
 
         Risultato res = new Risultato("-", 0, 0, 0, 0);
+        
         try {
-
-
             PreparedStatement ps = connessione.prepareCall("call ultimoVoto(?);");
             ps.setInt(1, this.matricola);
             ResultSet rs = ps.executeQuery();
@@ -41,15 +40,12 @@ public class Studente {
                 res.insegnante = rs.getInt("insegnante");
                 res.studente = rs.getInt("studente");
                 res.voto = rs.getInt("voto");
-
-
             }
-
-
         } catch (SQLException e) {
             System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
         }
 
+        
         return res;
 
     }
@@ -60,8 +56,6 @@ public class Studente {
         List < Lezione > res = new ArrayList < Lezione > ();
 
         try {
-
-
             PreparedStatement ps = connessione.prepareCall("call lezioneOggi(?);");
             ps.setInt(1, this.classe);
             ResultSet rs = ps.executeQuery();
@@ -89,8 +83,6 @@ public class Studente {
         Assenza res = new Assenza("-", "-", 0, 0, 0);
 
         try {
-
-
             PreparedStatement ps = connessione.prepareCall("call ultimaAssenza(?);");
             ps.setInt(1, this.matricola);
             ResultSet rs = ps.executeQuery();
@@ -113,12 +105,8 @@ public class Studente {
     public Avviso ultimoAvviso(Connection connessione) {
 
         Avviso res = new Avviso(0, "-", 0, 0, "-");
-
-
-
+        
         try {
-
-
             PreparedStatement ps = connessione.prepareCall("call ultimoAvviso(?);");
             ps.setInt(1, this.classe);
             ResultSet rs = ps.executeQuery();
@@ -138,8 +126,6 @@ public class Studente {
         return res;
 
     }
-
-
 
 
 }
